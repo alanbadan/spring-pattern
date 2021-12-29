@@ -7,13 +7,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ead.authuser.Dto.UserDto;
+import com.ead.authuser.dto.UserDto;
 import com.ead.authuser.enuns.UserStatus;
 import com.ead.authuser.enuns.UserType;
 import com.ead.authuser.models.UserModel;
@@ -31,7 +32,7 @@ public class AuthenticationController {
 	
 	
 	@PostMapping("/signup")
-	public ResponseEntity<Object> registerUser(@RequestBody 
+	public ResponseEntity<Object> registerUser(@RequestBody  @Validated(UserDto.UserView.RegistrationPost.class)
 			                                   @JsonView(UserDto.UserView.RegistrationPost.class) UserDto userDto) {
 		
 		if(userService.existByUserName(userDto.getUsername())) {

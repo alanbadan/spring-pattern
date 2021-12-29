@@ -6,10 +6,20 @@ import java.util.UUID;
 
 import com.ead.authuser.models.UserModel;
 
+
 public interface UserService  {
 
 	List<UserModel> findAll();
 	Optional<UserModel> findById(UUID userId);
-	 void delete(UserModel userModel);
+	
+	
+	void delete(UserModel userModel);
+	 
+	void save(UserModel userModel);
+	
+	
+	boolean existByUserName(String username);
+	
+	boolean existByEmail(String email);
 
 }

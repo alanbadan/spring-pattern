@@ -10,6 +10,6 @@ import com.ead.authuser.models.UserModel;
 
 public interface UserRepository extends JpaRepository<UserModel, UUID>{
      
-	
-	
+	boolean existByUserName(String userName);
+	boolean existByEmail(String email);
 }

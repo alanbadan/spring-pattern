@@ -26,7 +26,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 @RequestMapping( "/auth")
 public class AuthenticationController {
 	
-	
 	@Autowired
 	UserService userService;
 	
@@ -35,10 +34,10 @@ public class AuthenticationController {
 	public ResponseEntity<Object> registerUser(@RequestBody  @Validated(UserDto.UserView.RegistrationPost.class)
 			                                   @JsonView(UserDto.UserView.RegistrationPost.class) UserDto userDto) {
 		
-		if(userService.existByUserName(userDto.getUsername())) {
+		if(userService.existsByUsername(userDto.getUsername())) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR : usuario existente");
 		}
-		if(userService.existByEmail(userDto.getEmail())) {
+		if(userService.existsByEmail(userDto.getEmail())) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR : email existente");
 		}
 		//precisa converter o user dto em usermodel 

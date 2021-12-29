@@ -10,6 +10,7 @@ import com.ead.authuser.models.UserModel;
 public interface UserService  {
 
 	List<UserModel> findAll();
+	
 	Optional<UserModel> findById(UUID userId);
 	
 	
@@ -18,8 +19,8 @@ public interface UserService  {
 	void save(UserModel userModel);
 	
 	
-	boolean existByUserName(String username);
+	boolean existsByUsername(String username);
 	
-	boolean existByEmail(String email);
+	boolean existsByEmail(String email);
 
 }

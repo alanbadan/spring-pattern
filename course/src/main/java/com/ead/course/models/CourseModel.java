@@ -9,11 +9,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.ead.course.enuns.CourseLevel;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -53,8 +57,11 @@ public class CourseModel  implements Serializable{
 	private CourseLevel courseStatus;
 	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //definindo tipo de asseço a serializacao e deserializacao
-	@OneToMany(mappedBy = "course") // a chave estrangeira
+	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY) // a chave estrangeira course
+	@Fetch(FetchMode.SUBSELECT) //estudar melhor
 	private Set<ModuleModel> modules; //assiciocao de cousros para modulo //set nalo é ordenado , e não repete//melhor opcao para criacao de colecao para associacao
+
+	
 	
 
 }

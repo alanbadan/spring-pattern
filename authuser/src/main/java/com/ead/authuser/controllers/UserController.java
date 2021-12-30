@@ -52,8 +52,7 @@ public class UserController {
 		
 		Optional<UserModel> userModelOptional = userService.findById(userId);
 		if(!userModelOptional.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hum errou rude");
-					
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hum errou rude");				
 		}
 		else {
 		       return ResponseEntity.status(HttpStatus.OK).body(userModelOptional.get());
@@ -67,7 +66,6 @@ public class UserController {
 		Optional<UserModel> userModelOptional = userService.findById(userId);
 		if(!userModelOptional.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user Not Found");
-					
 		}
 		else {
 			userService.delete(userModelOptional.get());

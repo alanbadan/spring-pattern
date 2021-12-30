@@ -2,6 +2,7 @@ package com.ead.course.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -11,11 +12,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.ead.course.enuns.CourseLevel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
@@ -48,6 +51,10 @@ public class CourseModel  implements Serializable{
 	private CourseLevel courseLevel;
 	@Enumerated(EnumType.STRING)  // anotacao pra transformar enum em string
 	private CourseLevel courseStatus;
+	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //definindo tipo de asseço a serializacao e deserializacao
+	@OneToMany(mappedBy = "course") // a chave estrangeira
+	private Set<ModuleModel> modules; //assiciocao de cousros para modulo //set nalo é ordenado , e não repete//melhor opcao para criacao de colecao para associacao
 	
 
 }

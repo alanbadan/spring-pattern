@@ -37,7 +37,7 @@ import com.ead.course.specification.SpecifiactionTemplate;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class ModuleCourse {
 	
-	 @Autowired
+	    @Autowired
 	    ModuleService moduleService;
 
 	    @Autowired

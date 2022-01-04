@@ -55,4 +55,6 @@ public class ModuleModel implements Serializable{
 	@Fetch(FetchMode.SUBSELECT) //estudar melhor
 	private Set<LessonModel> lessos;
 
+
+
 }

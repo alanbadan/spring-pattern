@@ -1,8 +1,11 @@
 package com.ead.course.servicies;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.ead.course.models.CourseModel;
 
@@ -14,6 +17,6 @@ public interface CourseService {
 
 	void delete(CourseModel courseModel);
 
-	List<CourseModel> findAll();
+	Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable);
 
 }

@@ -1,10 +1,12 @@
 package com.ead.course.servicies.impl;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.ead.course.models.CourseModel;
@@ -35,9 +37,10 @@ public class CourseServiceImpl implements CourseService{
 		
 	}
 
-	@Override
-	public List<CourseModel> findAll() {
-		return courseRepository.findAll();
+    @Override
+	public Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable) { // tem que extebder a JpaSep... no repository
+		
+		return courseRepository.findAll(spec, pageable);
 	}
 	
 

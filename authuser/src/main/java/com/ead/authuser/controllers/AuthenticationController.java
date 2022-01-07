@@ -21,10 +21,19 @@ import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import lombok.extern.log4j.Log4j2;
+
+
+@Log4j2  // com essa anotacao não precisa criar instancia logger
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)// relativo ao cors9 da acesso de qualquer lugra),a nivel de classe tendo acesso a todos os metodos
 @RequestMapping( "/auth")
 public class AuthenticationController {
+	
+	
+//	Logger logger = LoggerFactory.getLogger(AuthenticationController.class); //criando a instancia para log usando o looger factory .class
+//	Logger logger = LogManager.getLogger(AuthenticationController.class); // log4j2
+	
 	
 	@Autowired
 	UserService userService;
@@ -53,5 +62,32 @@ public class AuthenticationController {
 		
 		
 	}
+	// esses strater logging é padrão no spring /para usar o godForJ2 deve excluir no pom.xml Tag: </exclusion> starter-logging 
+	//criando um metodo coo ex para ver logs // no arquivo application.yaml outra maneira de definif logs
+//	@RequestMapping("/") //logger é usado quando vc cria a instancia na mao sem  a anotacao do lombok.
+/*	public String index() {
+		 logger.trace("trace"); // é usando para um maior granularidade(muito detalhe)
+		 logger.debug("debug"); // é usado para ambiente de dev (acinamento de metodos) 
+		 logger.info("Info");  // é usado em prod para ter u controle e não tantod detalhes  (default) o srping ja traz
+		 logger.warn("warn"); // traz avisos de processos     (default)
+		 logger.error("error"); // // traz os erros boas praticas inceri-los nos blocos try catch 
+		
+		return " logging Spring";    
+		                                //caminho do projeto                                                                       //pacote
+		// mostrando o log pelo maven : C:\projetos\projetos_cursos\EAD>mvn spring-boot:run Dspring-boot.arguments=--logging.level.com.ead=trace
+	}
+*/	
+	// com lombok
+	@RequestMapping("/")
+	public String index() {
+		 log.trace("trace"); // é usando para um maior granularidade(muito detalhe)
+		 log.debug("debug"); // é usado para ambiente de dev (acinamento de metodos) 
+		 log.info("Info");  // é usado em prod para ter u controle e não tantod detalhes  (default) o srping ja traz
+		 log.warn("warn"); // traz avisos de processos     (default)
+		 log.error("error"); // // traz os erros boas praticas inceri-los nos blocos try catch 
+		
+		return " logging Spring"; 
+	}
+	
 	
 }

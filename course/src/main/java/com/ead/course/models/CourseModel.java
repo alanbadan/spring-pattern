@@ -56,12 +56,19 @@ public class CourseModel  implements Serializable{
 	@Enumerated(EnumType.STRING)  // anotacao pra transformar enum em string
 	private CourseLevel courseStatus;
 	
+	
+	
+	
+	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //definindo tipo de asseço a serializacao e deserializacao
 	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY) // a chave estrangeira course
 	@Fetch(FetchMode.SUBSELECT) //estudar melhor
 	private Set<ModuleModel> modules; //assiciocao de cousros para modulo //set nalo é ordenado , e não repete//melhor opcao para criacao de colecao para associacao
 
 	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@OneToMany(mappedBy = "course", fetch = FetchType.LAZY) //chave estrangeira course
+    private Set<CourseUserModel> courseUsers ; 	
 	
 
 }

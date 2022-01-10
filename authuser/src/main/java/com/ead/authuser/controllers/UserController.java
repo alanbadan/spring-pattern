@@ -28,6 +28,9 @@ import com.ead.authuser.services.UserService;
 import com.ead.authuser.specification.SpecificationTemplate;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)// relativo ao cors9 da acesso de qualquer lugra),a nivel de classe tendo acesso a todos os metodos
 @RequestMapping( "/user")
@@ -69,6 +72,10 @@ public class UserController {
 		}
 		else {
 			userService.delete(userModelOptional.get()); // get() pq é um optional
+			
+			log.debug("Delete deleteUser userDto save {}", userId);
+			log.info("User deleted successfuly userid{}", userId);
+			
 			return ResponseEntity.status(HttpStatus.OK).body("User delete succsess");
 		}
 	}	
@@ -78,6 +85,7 @@ public class UserController {
 				                                 @RequestBody @Validated(UserDto.UserView.UserPut.class)//anotacao vlidate para validar o uso do json
 		                                         @JsonView(UserDto.UserView.UserPut.class) UserDto userDto ) {
 			
+			log.debug("Put updateUser userDto received {}",userDto.toString());
 			Optional<UserModel> userModelOptional = userService.findById(userId);
 			if(!userModelOptional.isPresent()) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user Not Found");
@@ -90,6 +98,8 @@ public class UserController {
 				userModel.setCpf(userDto.getCpf());
 				userModel.setLastUpdatedate(LocalDateTime.now(ZoneId.of("UTC")));
 				userService.save(userModel);
+				log.debug("Put updateUser userDto save {}",userModel.toString());
+				log.info("User update successfuly userid{}", userModel.getUserid());
 				
 				return ResponseEntity.status(HttpStatus.OK).body(userModel);
 			}

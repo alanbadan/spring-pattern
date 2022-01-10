@@ -43,6 +43,9 @@ public class AuthenticationController {
 	public ResponseEntity<Object> registerUser(@RequestBody  @Validated(UserDto.UserView.RegistrationPost.class)
 			                                   @JsonView(UserDto.UserView.RegistrationPost.class) UserDto userDto) {
 		
+		//montando um logo para mostrar a vinda do dto
+		log.debug("Post registerUser userDto received {}",userDto.toString()); // usando as chaves para trazer diferentes tipos de contextos e não somente tipo primitivo com usando %
+		                                                                       // o metodo + o nome ...
 		if(userService.existsByUsername(userDto.getUsername())) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR : usuario existente");
 		}
@@ -58,6 +61,8 @@ public class AuthenticationController {
 		userModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC")));
 		userModel.setLastUpdatedate(LocalDateTime.now(ZoneId.of("UTC")));
 		userService.save(userModel);
+		log.debug("Post registerUser userDto save {}",userModel.toString());// mostrando o id salvo do usuario , to String quando não ha relacionameto com outra tabela caso tenha pode dar zica
+		log.info("User saved successfuly userid{}", userModel.getUserid()); //log mostrando o id salvo do usuario
 		return ResponseEntity.status(HttpStatus.CREATED).body(userModel);
 		
 		
@@ -87,7 +92,5 @@ public class AuthenticationController {
 		 log.error("error"); // // traz os erros boas praticas inceri-los nos blocos try catch 
 		
 		return " logging Spring"; 
-	}
-	
-	
+	}	
 }

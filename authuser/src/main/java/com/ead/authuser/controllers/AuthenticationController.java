@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,9 +48,11 @@ public class AuthenticationController {
 		log.debug("Post registerUser userDto received {}",userDto.toString()); // usando as chaves para trazer diferentes tipos de contextos e não somente tipo primitivo com usando %
 		                                                                       // o metodo + o nome ...
 		if(userService.existsByUsername(userDto.getUsername())) {
+			log.warn("Username {} is Already Taken ", userDto.getUsername());
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR : usuario existente");
 		}
 		if(userService.existsByEmail(userDto.getEmail())) {
+			log.warn("Email {} is Already Taken ", userDto.getEmail());
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR : email existente");
 		}
 		//precisa converter o user dto em usermodel 
@@ -83,7 +86,7 @@ public class AuthenticationController {
 	}
 */	
 	// com lombok
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String index() {
 		 log.trace("trace"); // é usando para um maior granularidade(muito detalhe)
 		 log.debug("debug"); // é usado para ambiente de dev (acinamento de metodos) 
@@ -91,6 +94,6 @@ public class AuthenticationController {
 		 log.warn("warn"); // traz avisos de processos     (default)
 		 log.error("error"); // // traz os erros boas praticas inceri-los nos blocos try catch 
 		
-		return " logging Spring"; 
+		 return "Logging Spring Boot..."; 
 	}	
 }

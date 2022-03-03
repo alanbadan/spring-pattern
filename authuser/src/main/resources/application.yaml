@@ -16,13 +16,15 @@ spring:
     properties:
       hibernate:
         show_sql: true    
-  logging: ## configurando o log a nivel de pacote// isso é log back o logforj2 mais utilizado
-   level:
-      com.ead: TRACE       
-##    root: DEBUG ## confg para toda aplicacao a nivel de root(raiz)
-      root: INFO
-      org.springframework.web: DEBUG ## log anivel de requisicão( metodo chamado , controler, deetalhes requizicao e reotrno da requisicão
-      org.hibernate: INFO ## detalhamento do hibernate.(info traz as infoemacao mais relevante)
+        
+        
+logging: ## configurando o log a nivel de pacote// isso é log back o logforj2 mais utilizado
+  level:
+     com.ead: TRACE       
+##   root: DEBUG ## confg para toda aplicacao a nivel de root(raiz)
+     root: INFO
+     org.springframework.web: DEBUG ## log anivel de requisicão( metodo chamado , controler, deetalhes requizicao e reotrno da requisicão
+     org.hibernate: INFO ## detalhamento do hibernate.(info traz as infoemacao mais relevante)
       
   
    

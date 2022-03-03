@@ -1,5 +1,7 @@
 package com.ead.authuser.dto;
 
+import java.util.UUID;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -22,6 +24,7 @@ public class UserDto {
 		public static interface PasswordPut{}
 		public static interface ImputPut{}
 	}   
+	private UUID userId;
 	
 	          //pasando a visao onde ele vai validar
 	@NotBlank(groups = UserView.RegistrationPost.class)//não permite valores vazios ou null(@notnull permite valores vazios)

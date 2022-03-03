@@ -66,6 +66,7 @@ public class UserController {
 	
 	@DeleteMapping("/{userId}")
 	public ResponseEntity<Object> deleteUser(@PathVariable(value = "userId") UUID userId) {
+		log.debug("Delete deleteUser userId received {}",userId);
 		Optional<UserModel> userModelOptional = userService.findById(userId);
 		if(!userModelOptional.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user Not Found");
@@ -113,7 +114,8 @@ public class UserController {
 				if(!userModelOptional.isPresent()) {
 					return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user Not Found");
 							
-				}if(userModelOptional.get().getPassword().equals(userDto.getOldPassword())) {
+				}if(!userModelOptional.get().getPassword().equals(userDto.getOldPassword())) {
+					log.warn("Senhas não coincidem userid {}", userDto.getUserId()); // log para verifivar a senha caso seja errada multiplas veses
 					return ResponseEntity.status(HttpStatus.CONFLICT).body("Senhas não coincidem");
 				}
 				else {
@@ -124,7 +126,8 @@ public class UserController {
 					
 					return ResponseEntity.status(HttpStatus.OK).body(" Password atualizado ");
 				}
-	}
+	    }
+			
 			@PutMapping("/{userId}/imagem")
 			public ResponseEntity<Object> updateImage(@PathVariable(value = "userId") UUID userId,
 					                                  @RequestBody @Validated(UserDto.UserView.ImputPut.class)

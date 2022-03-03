@@ -20,7 +20,7 @@ public class CourseClient {
 	@Autowired
 	UtilService utilService;
 	
-String RESQUEST_URI = "";
+    String RESQUEST_URI = "";
 	
 	//metodo pra montar a requisicao para o ms course 
 	public Page<UserDto> getAllUsersByCourse(UUID courseId ,Pageable pageable){

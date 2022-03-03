@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ead.course.dto.CourseDto;
 import com.ead.course.models.CourseModel;
 import com.ead.course.servicies.CourseService;
-import com.ead.course.specification.SpecifiactionTemplate;
+import com.ead.course.specification.SpecificationTemplate;
 
 
 @RestController
@@ -82,7 +82,7 @@ public class CourseController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Page<CourseModel>> getAllCourses(SpecifiactionTemplate.CourseSpec spec,
+	public ResponseEntity<Page<CourseModel>> getAllCourses(SpecificationTemplate.CourseSpec spec,
 			                                               @PageableDefault(page = 0,size = 10, sort = "courseId", direction = Sort.Direction.ASC) Pageable pageable) {
 		
 		return ResponseEntity.status(HttpStatus.OK).body(courseService.findAll(spec, pageable));

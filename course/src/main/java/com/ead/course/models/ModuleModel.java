@@ -35,11 +35,11 @@ public class ModuleModel implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID courseId;
+	private UUID moduleId;
 	@Column(nullable = false)
 	private String title;
 	@Column(nullable = false, length = 250)
-	private String descrption;
+	private String description;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss") //trazendo o formato da dtae
 	@Column(nullable = false)
 	private LocalDateTime creationDate;
@@ -53,8 +53,6 @@ public class ModuleModel implements Serializable{
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //definindo tipo de asseço a serializacao e deserializacao
 	@OneToMany(mappedBy = "module", fetch = FetchType.LAZY) 
 	@Fetch(FetchMode.SUBSELECT) //estudar melhor
-	private Set<LessonModel> lessos;
-
-
+	private Set<LessonModel> lessons;
 
 }

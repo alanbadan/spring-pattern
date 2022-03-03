@@ -19,7 +19,7 @@ import net.kaczmarzyk.spring.data.jpa.web.annotation.And;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
 
 
-public class SpecifiactionTemplate {
+public class SpecificationTemplate {
 	
 	
   @And({    

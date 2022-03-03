@@ -23,9 +23,5 @@ public interface ModuleService {
 	
 	Page<ModuleModel> findAllByCourse(Specification<ModuleModel> spec, Pageable pageable);
 
-	ModuleModel save(ModuleModel moduleModel);
-
-	
-	
-
+	ModuleModel save(ModuleModel moduleModel);	
 }

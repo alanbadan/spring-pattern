@@ -28,7 +28,7 @@ import com.ead.course.dto.LessonDto;
 import com.ead.course.models.LessonModel;
 import com.ead.course.servicies.LessonService;
 import com.ead.course.servicies.ModuleService;
-import com.ead.course.specification.SpecifiactionTemplate;
+import com.ead.course.specification.SpecificationTemplate;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -45,11 +45,11 @@ public class LessonCourse {
 	
 	@GetMapping("/modules/{moduleId}/lessons")
 	public ResponseEntity<Page<LessonModel>> getAllLesson (@PathVariable(value = "moduleId") UUID moduleId,
-	                                                       SpecifiactionTemplate.LessonSpec spec,
+	                                                       SpecificationTemplate.LessonSpec spec,
 	                                                       @PageableDefault(page = 0, size = 10, sort = "lessonId", direction = Sort.Direction.ASC) Pageable pageable) {
 		
 	
-	        return ResponseEntity.status(HttpStatus.OK).body(lessonService.findAllByModule(SpecifiactionTemplate.lessonModuleId(moduleId).and(spec),pageable));                                                
+	        return ResponseEntity.status(HttpStatus.OK).body(lessonService.findAllByModule(SpecificationTemplate.lessonModuleId(moduleId).and(spec),pageable));                                                
 	  }
 	
 	@GetMapping("/modules/{moduleId}/lessons/{lessonId}")

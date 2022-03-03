@@ -3,9 +3,11 @@ package com.ead.course.servicies.impl;
 import java.util.UUID;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.ead.course.servicies.UtilService;
 
+@Service
 public class UtilServiceImpl implements UtilService {
 
 	@Override

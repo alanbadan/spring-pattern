@@ -34,7 +34,7 @@ public class LessonModel implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID courseId;
+	private UUID lessonId;
 	
 	@Column(nullable = false)
 	private String videoUrl;
